@@ -5,11 +5,20 @@
  * @author archana, @date 5/25/14 9:49 PM
  */
 public class TaxCalculator {
-    public double calculateTax( boolean single ,double income ) {
+
+    public static final double INC_21450 = 21450.0;
+    public static final double RATE_015 = 0.15;
+
+    public double calculateTax(boolean single, double income) {
+        double tax = 0.0;
+        if (single) {
+            if (income <= INC_21450) {
+                tax = income * RATE_015;
+            }
+        }
 
 
-
-        return  0.0;
+        return tax;
     }
 
 
