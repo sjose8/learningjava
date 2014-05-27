@@ -5,7 +5,12 @@
  * @author archana, @date 5/25/14 9:49 PM
  */
 public class TaxCalculator {
-    public boolean someLibraryMethod() {
-        return true;
+    public double calculateTax( boolean single ,double income ) {
+
+
+
+        return  0.0;
     }
+
+
 }
