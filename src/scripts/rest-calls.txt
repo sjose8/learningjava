@@ -1,0 +1,4 @@
+ curl -i -X POST -H "Content-Type: application/json" -d '{"title":"Here Came A Mouse","ISBN":"123456"}' localhost:8080/RESTService/books
+ curl -i -X PUT -H "Content-Type: application/json" -d '{"title":"Along Camel","ISBN":"123456"}' localhost:8080/RESTService/books/3
+ curl -i -X DELETE localhost:8080/RESTService/books/3
+ curl -i -H "Accept: application/json" localhost:8080/RESTService/books/1
