@@ -8,9 +8,23 @@
  */
 
 // Apply the java plugin to add support for Java
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.maiflai:gradle-scalatest:0.4'
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'jacoco'
+apply plugin: 'scala'
+//apply plugin: 'scalatest'
+
+
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -44,9 +58,28 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.assertj:assertj-core:1.6.0'
     testCompile 'com.jayway.restassured:rest-assured:2.3.2'
+    testCompile 'org.scalatest:scalatest_2.10:2.2.2'
+    testRuntime 'org.pegdown:pegdown:1.1.0'
 
 }
 
 test {
+    maxParallelForks = 1
     finalizedBy jacocoTestReport
 }
+
+test << {
+    ant.taskdef(
+            name: 'scalatest',
+            classname: 'org.scalatest.tools.ScalaTestAntTask',
+            classpath: classpath.asPath
+    )
+    ant.scalatest(
+            runpath: testClassesDir,
+            haltonfailure: 'true',
+            fork: 'false') {
+        reporter(type: 'stderr')
+        reporter(type: 'html', directory: 'build/reports/scalaTest')
+    }
+}
+
