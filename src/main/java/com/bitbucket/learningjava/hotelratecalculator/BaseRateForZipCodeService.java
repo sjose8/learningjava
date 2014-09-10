@@ -23,7 +23,7 @@ public class BaseRateForZipCodeService {
                 break;
             case "97007":
                 rate = 130.0;
-                break;
+                //break;
             case "97220":
                 rate = 140.0;
                 break;
