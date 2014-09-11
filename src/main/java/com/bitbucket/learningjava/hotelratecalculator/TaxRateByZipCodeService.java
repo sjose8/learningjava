@@ -11,7 +11,11 @@ public class TaxRateByZipCodeService {
 
 
     public double getTaxPercentForZipCode ( String zipCode) {
+
         double percent = 0.0;
+        if (zipCode == null){
+            throw new IllegalArgumentException("Null Zip Code is not supported");
+        }
         switch (zipCode) {
             case "97006":
                 percent = 11.0;

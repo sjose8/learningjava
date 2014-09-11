@@ -17,13 +17,16 @@ public class BaseRateForZipCodeService {
 
     public double getBaseRateForZipCode ( String zipCode) {
         double rate = 0.0;
+        if (zipCode == null){
+            throw new IllegalArgumentException("Null Zip Code is not supported");
+        }
         switch (zipCode) {
             case "97006":
                 rate = 100.0;
                 break;
             case "97007":
                 rate = 130.0;
-                //break;
+                break;
             case "97220":
                 rate = 140.0;
                 break;
