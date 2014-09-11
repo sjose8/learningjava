@@ -13,4 +13,9 @@ public class UnitsCalculator {
 
         return (celcius * (9.0 / 5.0)) + 32;
     }
+
+    public double farenheitToCelcius (double farenheit) {
+
+        return (farenheit - 32) * (5.0 / 9.0);
+    }
 }
