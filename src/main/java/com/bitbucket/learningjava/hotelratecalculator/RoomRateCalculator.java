@@ -7,8 +7,7 @@ package com.bitbucket.learningjava.hotelratecalculator;
  */
 public class RoomRateCalculator {
 
-    private  BaseRateForZipCodeService
-            baseRateForZipCodeService;
+    private  BaseRateForZipCodeService baseRateForZipCodeService;
     private TaxRateByZipCodeService taxRateByZipCodeService;
 
     public RoomRateCalculator(BaseRateForZipCodeService zipCodeService, TaxRateByZipCodeService taxRateByZipCodeService) {
