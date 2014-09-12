@@ -36,6 +36,9 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.assertj:assertj-core:1.6.0'
     testCompile 'com.jayway.restassured:rest-assured:2.3.2'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'com.tngtech.java:junit-dataprovider:1.9.1'
+
 
 }
 
