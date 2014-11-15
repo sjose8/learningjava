@@ -16,6 +16,8 @@ public class CertificationPractice {
         certificationPractice.printName2("good" , 2);
         System.out.println(certificationPractice.printName3(5 , 4));
         System.out.println(certificationPractice.getName(6));
+        System.out.println(certificationPractice.stringPractice());
+
 
     }
 
@@ -78,5 +80,15 @@ public class CertificationPractice {
         }
         return  p;
     }
+
+    public String stringPractice(){
+
+        String str = "Archana";
+        return str.substring(1,2);
+
+
+    }
+
+
 
 }
