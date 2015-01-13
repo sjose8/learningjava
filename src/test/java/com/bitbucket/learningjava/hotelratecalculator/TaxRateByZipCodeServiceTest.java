@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by amit on 9/9/14.
+ *
  */
 public class TaxRateByZipCodeServiceTest {
     @Test
@@ -29,9 +29,15 @@ public class TaxRateByZipCodeServiceTest {
 
 
 
-        @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void shouldThrowErrorForNull(){
         TaxRateByZipCodeService classUnderTest = new TaxRateByZipCodeService();
         classUnderTest.getTaxPercentForZipCode(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowErrorForDefault(){
+        TaxRateByZipCodeService classUnderTest = new TaxRateByZipCodeService();
+        classUnderTest.getTaxPercentForZipCode("asjfg");
     }
 }

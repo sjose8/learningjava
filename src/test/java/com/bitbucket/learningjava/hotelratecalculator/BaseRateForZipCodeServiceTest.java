@@ -8,7 +8,7 @@ import java.util.Currency;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by amit on 9/10/14.
+ *
  */
 public class BaseRateForZipCodeServiceTest {
     @Test
@@ -35,6 +35,12 @@ public class BaseRateForZipCodeServiceTest {
     public void shouldThrowErrorForNull(){
         BaseRateForZipCodeService classUnderTest = new BaseRateForZipCodeService(Currency.getInstance("USD"));
         classUnderTest.getBaseRateForZipCode(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowErrorForDefault(){
+        BaseRateForZipCodeService classUnderTest = new BaseRateForZipCodeService(Currency.getInstance("USD"));
+        classUnderTest.getBaseRateForZipCode("kij90");
     }
 
 
