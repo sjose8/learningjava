@@ -1,0 +1,60 @@
+All Linux cheatsheets -> http://www.nixtutor.com/linux/all-the-best-linux-cheat-sheets/
+
+Commmands to practice :
+pwd, cd, chmod, chown, ls ( with the flags), rm , mkdir, tail, head, < , grep, |
+
+
+Download this file uwing wget:
+http://catalog.data.gov/dataset/fdic-failed-bank-list/resource/608b288c-46bb-493c-a8ff-a2a0d05b51a0
+wget http://www.fdic.gov/bank/individual/failed/banklist.csv
+Use the ls command to check if download worked. Look at file attributes -> ls -lrt. Ownership.
+
+Print first 5 lines. Last 5 lines. Print the 2nd last line.
+
+head -5 < banklist.csv
+cat banklist.csv| head -5
+cat banklist.csv | tail -5
+
+Remove all the lines with leading quotes -> Use sed. Google for a sed one-liner
+http://sed.sourceforge.net/sed1line.txt
+# print only lines which do NOT match regexp (emulates "grep -v") : Regex is ^"
+ sed -n '/regexp/!p'          # method 1, corresponds to above
+ sed '/regexp/d'              # method 2, simpler syntax
+
+sed -n '/^"/!p' < banklist.csv > banklist-scrubbed.csv
+
+Sort the names of bank - ascending and then descending using the "sort" command.
+Options : Try ascending and then descending. Try Ignore lowercase/uppercase
+cut -d : -f 1,7 /etc/passwd
+
+Print the last 5 and the first 5
+
+Count the number of banks. use "wc -l"
+Remove dups. Now count the number of banks. Use "uniq" command to remove dups
+
+Run -> uniq banklist-scrubbed.csv| wc -l
+Then Run -> wc -l banklist-scrubbed.csv
+
+Why are counts same?
+
+Print out the list of all States in the list. There should be only one record for each state.
+The names should be sorted
+
+cut -d , -f3 banklist-scrubbed.csv | sort -f | uniq
+
+Get the list of all banks in AZ ( Use grep )
+Count of all banks ( wc along with grep )
+
+
+Compare the count in the 2 files : banklist.csv and banklist-scrubbed.csv : Do it manually for each file.
+
+
+Now create a script that accepts the 2 files as arguments. Then prints the difference in the line counts
+
+1 - Store the count of 1st file in a variable
+2 - Store count of 2nd File in a variable
+3 - Add them using an expression
+
+Call script line count. It should error out if arguments are not 2.
+
+http://www.theunixschool.com/

@@ -10,3 +10,5 @@
 + Create a class Book with three private final String fields - isbn, title, 1 Double field - price. Create getters only.
 + Create constructor with all fields. Over-ride toString to print a meaningful toString for the book.
 + Create a List of books. Add 3 books to it. Now calculate the total price of the books.
++ https://www.cs.utexas.edu/~scottm/cs314/handouts/PracticeProblems.htm
++ http://practiceit.cs.washington.edu/
