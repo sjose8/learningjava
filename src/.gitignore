@@ -4,3 +4,6 @@
 *.ipr
 .idea
 local.properties
+work
+classes
+stacktrace.log

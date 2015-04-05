@@ -1,5 +1,6 @@
 package com.bitbucket.learningjava.webservices;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import com.jayway.restassured.RestAssured.*;
 import com.jayway.restassured.matcher.RestAssuredMatchers.*;
@@ -13,6 +14,7 @@ import static com.jayway.restassured.RestAssured.given;
 public class BookServiceTest {
 
     @Test
+    @Ignore
     public void testWebServiceHappyPath(){
         given().contentType("application/json").log().all()
                 .request().body("{\"ISBN\":\"12345\",\"title\":\"Along Came A kite\"}")
