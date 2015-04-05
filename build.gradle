@@ -34,8 +34,8 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.5'
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:1.7.1'
-    testCompile 'com.jayway.restassured:rest-assured:2.3.2'
+    testCompile 'org.assertj:assertj-core:2.0.0'
+    testCompile 'com.jayway.restassured:rest-assured:2.4.0'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
     testCompile 'com.tngtech.java:junit-dataprovider:1.9.3'
 
@@ -45,7 +45,6 @@ dependencies {
 tasks.withType(org.gradle.api.tasks.testing.Test) {
     // show standard out and standard error of the test JVM(s) on the console
     testLogging.showStandardStreams = true
-
 }
 
 test {
@@ -54,21 +53,6 @@ test {
         events "passed", "skipped", "failed", "standardOut", "standardError"
     }
     finalizedBy jacocoTestReport
-}
-
-test << {
-    ant.taskdef(
-            name: 'scalatest',
-            classname: 'org.scalatest.tools.ScalaTestAntTask',
-            classpath: classpath.asPath
-    )
-    ant.scalatest(
-            runpath: testClassesDir,
-            haltonfailure: 'true',
-            fork: 'false') {
-        reporter(type: 'stderr')
-        reporter(type: 'html', directory: 'build/reports/scalaTest')
-    }
 }
 
 task calculator(type: JavaExec) {
