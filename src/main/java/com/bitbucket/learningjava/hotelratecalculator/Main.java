@@ -1,5 +1,8 @@
 package com.bitbucket.learningjava.hotelratecalculator;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import java.io.Console;
 import java.util.Currency;
 import java.util.Scanner;
@@ -7,6 +10,7 @@ import java.util.Scanner;
 /**
  * MAin class for running the program. http://docs.oracle.com/javase/tutorial/essential/io/cl.html
  */
+
 public class Main {
     public static void main(String... args) {
         String zipCode;
@@ -28,10 +32,14 @@ public class Main {
                 System.out.print("Calculation failed : Valid Zipcode and Month are required !!! ");
                 System.exit( 1 );
             }
+            //Injection stuff
+            Injector injector = Guice.createInjector( new RoomRateCalculatorModule());
+            RoomRateCalculator roomRateCalculator = injector.getInstance(RoomRateCalculator.class);
 
-            RoomRateCalculator roomRateCalculator = new RoomRateCalculator(
-                    new BaseRateForZipCodeService(Currency.getInstance("USD")),
-                    new TaxRateByZipCodeService());
+//            RoomRateCalculator roomRateCalculator = new RoomRateCalculator(
+//                    new BaseRateForZipCodeService(Currency.getInstance("USD")),
+//                    new TaxRateByZipCodeService(),
+//                    new DiscountRateForMonthService());
             System.out.println( String.format("The total room rate for %s and month %d is %f" ,
                     zipCode,month,roomRateCalculator.getTotalRoomRate(zipCode,month)) );
 

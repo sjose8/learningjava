@@ -1,11 +1,14 @@
 package com.bitbucket.learningjava.hotelratecalculator;
 
+import com.google.inject.Singleton;
+
 import java.util.Currency;
 
 /**
  * Get the base room rate for a zip code.
  * Only supports zip codes - 97006, 97007, 97220
  */
+@Singleton
 public class TaxRateByZipCodeService {
 
 

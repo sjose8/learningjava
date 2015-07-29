@@ -4,9 +4,7 @@ package com.bitbucket.learningjava.hotelratecalculator;
  * Created by amit on 9/11/14.
  */
 
-import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
-import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -18,37 +16,17 @@ import static org.mockito.Mockito.*;
 public class RoomRateCalculatorTest {
 
     @Test
-    @UseDataProvider("dataProviderMonth")
-    public void shouldReturnCorrectRate( int month, double expectedRate){
+    public void shouldReturnCorrectRate(){
         TaxRateByZipCodeService taxRateByZipCodeService = mock(TaxRateByZipCodeService.class);
         when(taxRateByZipCodeService.getTaxPercentForZipCode(anyString())).thenReturn(10.0);
         BaseRateForZipCodeService baseRateForZipCodeService = mock(BaseRateForZipCodeService.class);
         when(baseRateForZipCodeService.getBaseRateForZipCode(anyString())).thenReturn(100.0);
-        RoomRateCalculator roomRateCalculator = new RoomRateCalculator(baseRateForZipCodeService,taxRateByZipCodeService);
-        assertThat(roomRateCalculator.getTotalRoomRate("97006", month), closeTo(expectedRate, 0.01));
+        //mocking discountRate
+        DiscountRateForMonthService discountRateForMonthService = mock(DiscountRateForMonthService.class);
+        when(discountRateForMonthService.getDiscountRateForMonth(anyInt())).thenReturn(-0.3);
 
-
-    }
-
-
-    @DataProvider
-    public static Object[][] dataProviderMonth() {
-        // @formatter:off
-        return new Object[][] {
-                { 1, 80.0 },
-                { 2, 80.0 },
-                { 3, 140.0 },
-                { 4, 110.0 },
-                { 5, 110.0 },
-                { 6, 150.0 },
-                { 7, 150.0},
-                { 8, 150.0 },
-                { 9, 110.0 },
-                { 10, 80.0 },
-                { 11, 130.0 },
-                { 12, 130.0},
-                /* ... */
-        };
-        // @formatter:on
+        //mock month= 1 => expected rate = 80
+        RoomRateCalculator roomRateCalculator = new RoomRateCalculator(baseRateForZipCodeService,taxRateByZipCodeService, discountRateForMonthService);
+        assertThat(roomRateCalculator.getTotalRoomRate("97006", 1), closeTo(80, 0.01));
     }
 }
